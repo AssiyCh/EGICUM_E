@@ -37,7 +37,7 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
-        show-sql: true
+        show-sql: false
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
@@ -56,7 +56,7 @@ liquibase:
     contexts: dev
 
 server:
-    port: 8080
+    port: 8090
 
 # ===================================================================
 # JHipster specific properties
@@ -69,7 +69,7 @@ jhipster:
             key: dd802c830bba63e682400b7bd1b3555d277f079c
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: Egicum@localhost
-        baseUrl: http://127.0.0.1:8080
+        baseUrl: http://127.0.0.1:8090
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:
