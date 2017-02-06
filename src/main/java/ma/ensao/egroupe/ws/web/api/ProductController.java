@@ -42,30 +42,6 @@ public class ProductController {
 			Statement stmt = (Statement) con.createStatement();
 			String selectStat = "SELECT * FROM products";
 			ResultSet rows = stmt.executeQuery(selectStat);
-<<<<<<< HEAD
-			
-            while (rows.next()) {
-                int productId = rows.getInt("id");
-                String productName = rows.getString("name");
-                float productPrice = rows.getFloat("price");	
-			    //float productReduce = rows.getFloat("reduce");	
-                String productImgSrc = rows.getString("ImgSrc");
-                String productDescription = rows.getString("description");
-                	
-                Product p1=new Product();
-        		p1.setName(productName);
-        		p1.setId(productId);
-        		p1.setPrice(productPrice);
-				//p1.setReduce(productReduce);
-        		p1.setDescription(productDescription);
-        		p1.setImgSrc(productImgSrc);
-        		
-        		products.add(p1);
-                }
-
-			
-		}catch (SQLException e) {
-=======
 
 			while (rows.next()) {
 				int productId = rows.getInt("id");
@@ -87,7 +63,6 @@ public class ProductController {
 			}
 
 		} catch (SQLException e) {
->>>>>>> origin/master
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -107,30 +82,6 @@ public class ProductController {
 
 			prep.setInt(1, id);
 			ResultSet rows = prep.executeQuery();
-<<<<<<< HEAD
-			
-            while (rows.next()) {
-                int productId = rows.getInt("id");
-                String productName = rows.getString("name");
-                float productPrice = rows.getFloat("price");
-				//float productReduce = rows.getFloat("reduce");	
-                String productImgSrc = rows.getString("ImgSrc");
-                String productDescription = rows.getString("description");
-                	
-                Product p1=new Product();
-        		p1.setName(productName);
-        		p1.setId(productId);
-        		p1.setPrice(productPrice);
-				//p1.setReduce(productReduce);
-        		p1.setDescription(productDescription);
-        		p1.setImgSrc(productImgSrc);
-        		
-        		product.add(p1);
-                }
-
-			
-		}catch (SQLException e) {
-=======
 
 			while (rows.next()) {
 				int productId = rows.getInt("id");
@@ -152,7 +103,6 @@ public class ProductController {
 			}
 
 		} catch (SQLException e) {
->>>>>>> origin/master
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
