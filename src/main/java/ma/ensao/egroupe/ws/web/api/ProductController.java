@@ -52,6 +52,7 @@ public class ProductController {
                 int productId = rows.getInt("id");
                 String productName = rows.getString("name");
                 float productPrice = rows.getFloat("price");	
+			    float productReduce = rows.getFloat("reduce");	
                 String productImgSrc = rows.getString("ImgSrc");
                 String productDescription = rows.getString("description");
                 	
@@ -59,6 +60,7 @@ public class ProductController {
         		p1.setName(productName);
         		p1.setId(productId);
         		p1.setPrice(productPrice);
+				p1.setReduce(productReduce);
         		p1.setDescription(productDescription);
         		p1.setImgSrc(productImgSrc);
         		
@@ -96,6 +98,7 @@ public class ProductController {
                 int productId = rows.getInt("id");
                 String productName = rows.getString("name");
                 float productPrice = rows.getFloat("price");
+				float productReduce = rows.getFloat("reduce");	
                 String productImgSrc = rows.getString("ImgSrc");
                 String productDescription = rows.getString("description");
                 	
@@ -103,6 +106,7 @@ public class ProductController {
         		p1.setName(productName);
         		p1.setId(productId);
         		p1.setPrice(productPrice);
+				p1.setReduce(productReduce);
         		p1.setDescription(productDescription);
         		p1.setImgSrc(productImgSrc);
         		

@@ -25,7 +25,7 @@ public class CustomerController {
     public String buyProduct(@PathVariable int id,@PathVariable int idProduct) {		
 		
         try {
-	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/egicum","root","");
+	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/Egicum","root","");
 	        
 			//declaring statement
 	        PreparedStatement prep = (PreparedStatement) con.prepareStatement("SELECT * FROM customers where id_customer=?"); 
