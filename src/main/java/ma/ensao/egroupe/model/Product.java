@@ -1,9 +1,11 @@
 package ma.ensao.egroupe.model;
 
 public class Product {
-	
+
 	private int id;
 	private float price;
+	private float reduce;
+
 	private String name;
 	private String imgSrc;
 	private String description;
@@ -11,34 +13,49 @@ public class Product {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public float getPrice() {
 		return price;
 	}
+
 	public void setPrice(float price) {
 		this.price = price;
 	}
+
+	public float getReduce() {
+		return reduce;
+	}
+
+	public void setReduce(float reduce) {
+		this.reduce = reduce;
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getImgSrc() {
 		return imgSrc;
 	}
+
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
 }
