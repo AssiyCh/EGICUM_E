@@ -41,7 +41,7 @@ public class ProductController {
 		*/
 		
         try {
-	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/egicum","root","");
+	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/Egicum","root","");
 	        
 			//declaring statement
 	        Statement stmt = (Statement) con.createStatement();
@@ -49,15 +49,15 @@ public class ProductController {
 			ResultSet rows = stmt.executeQuery(selectStat);
 			
             while (rows.next()) {
-                //int productId = rows.getInt("id");
+                int productId = rows.getInt("id");
                 String productName = rows.getString("name");
-                float productPrice = rows.getFloat("price");
+                float productPrice = rows.getFloat("price");	
                 String productImgSrc = rows.getString("ImgSrc");
                 String productDescription = rows.getString("description");
                 	
                 Product p1=new Product();
         		p1.setName(productName);
-        		//p1.setId(productId);
+        		p1.setId(productId);
         		p1.setPrice(productPrice);
         		p1.setDescription(productDescription);
         		p1.setImgSrc(productImgSrc);
@@ -84,7 +84,7 @@ public class ProductController {
 		
 		
         try {
-	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/egicum","root","");
+	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/Egicum","root","");
 	        
 			//declaring statement
 	        PreparedStatement prep = (PreparedStatement) con.prepareStatement("SELECT * FROM products where id=?"); 
