@@ -5,7 +5,6 @@ public class Product {
 	private int id;
 	private float price;
 	private float reduce;
-
 	private String name;
 	private String imgSrc;
 	private String description;
