@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import ma.ensao.egroupe.model.Customer;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,7 +96,7 @@ public class CustomerController {
             value = "/customers/conn/{em}/{pass}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public int connect(@PathVariable String em,@PathVariable String pass) {		
+    public Customer  connect(@PathVariable String em,@PathVariable String pass) {		
 		
         try {
 	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/Egicum","root","");
@@ -107,14 +109,18 @@ public class CustomerController {
 			
 			ResultSet rows = prep.executeQuery();
 			
-			if(rows.wasNull()){
+			if(!rows.next()){
 				//UserNot Found
-				return -1;
+				return null;
 			}else{
-				rows.next();
-				int customerId = rows.getInt("id_customer");
+				Customer c = new Customer();
+				c.setId(rows.getInt("id_customer"));
+				c.setCredit(rows.getInt("credit"));
+				c.setEmail(rows.getString("email"));
+				c.setNom(rows.getString("nom"));
+				c.setPoints(rows.getInt("points"));
 				// If found Return ID 
-				return customerId ; 
+				return c ; 
 			}
 
 		}catch (SQLException e) {
@@ -122,7 +128,7 @@ public class CustomerController {
 			e.printStackTrace();
 		}
         //Err
-        return -2 ;
+        return null ;
 	}
 
 }
