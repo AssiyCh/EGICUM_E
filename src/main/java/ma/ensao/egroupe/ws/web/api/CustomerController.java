@@ -91,7 +91,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(
-            value = "/customers/{em}/{pass}",
+            value = "/customers/conn/{em}/{pass}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public int connect(@PathVariable String em,@PathVariable String pass) {		
@@ -100,7 +100,7 @@ public class CustomerController {
 	        Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/Egicum","root","");
 	        
 			//declaring statement
-	        PreparedStatement prep = (PreparedStatement) con.prepareStatement("SELECT * FROM customers where email=? and password=?"); 
+	        PreparedStatement prep = (PreparedStatement) con.prepareStatement("SELECT * FROM customers WHERE email = ? and password = ? "); 
 	        
 	        prep.setString(1, em);
 			prep.setString(2, pass);
@@ -112,13 +112,11 @@ public class CustomerController {
 				return -1;
 			}else{
 				rows.next();
-				int customerId = rows.getInt("id");
+				int customerId = rows.getInt("id_customer");
 				// If found Return ID 
 				return customerId ; 
 			}
-			
-            
-			
+
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
