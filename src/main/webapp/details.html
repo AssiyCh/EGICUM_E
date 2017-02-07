@@ -247,8 +247,23 @@
 
         <div ng-if="showModal" class="shoppingCartModal">
             <div class="right">
+                <div ng-if="user.id">
+                    {{user.nom}}
+                    <br><br> crédit : {{user.credit}}
+                    <br><br> points : {{user.points}}
+                </div>
+                <br><br><br>
                 <h1>Total : {{shoppingCart.total}}$</h1>
                 <h3>{{shoppingCart.products.length}} items</h3>
+                <div ng-if="!user.id" class="loggin">
+                    <hr> Email : <input type="email" ng-model="logInfo.email" />
+                    </br>
+                    </br>
+                    Password : <input type="password" ng-model="logInfo.password" />
+                    </br>
+                    </br>
+                    <button ng-click="loggin()">loggin</button>
+                </div>
             </div>
             <div class="left">
                 <div ng-repeat="p in products" class="prod_box">

@@ -1,6 +1,8 @@
 
 angular.module('indexApp', ['ngCookies']).
     controller('controller', function ($scope, $http, $cookies) {
+        $scope.user = JSON.parse($cookies.get('user') || '{}');
+        $scope.logInfo = { email: "", password: "" };
         $scope.showModal = false;
         $scope.products = [];
         $scope.specialProduct = {};
@@ -20,6 +22,24 @@ angular.module('indexApp', ['ngCookies']).
             // or server returns response with an error status.
         });
 
+
+        $scope.loggin = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8090/customers/conn/' + $scope.logInfo.email + "/" + $scope.logInfo.password
+            }).then(function successCallback(response) {
+                if (response.data) {
+                    $scope.user = response.data;
+                    $cookies.put('user', JSON.stringify($scope.user));
+                } else {
+                    alert('Try Again , user not found!!!')
+                }
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        }
 
         $scope.randomProduct = () => {
             let max = $scope.products.length;
@@ -63,20 +83,47 @@ angular.module('indexApp', ['ngCookies']).
 
         $scope.payer = () => {
 
+            if ($scope.user.id) {
 
-            $cookies.put('shoppingCart', '{"products" : [],"total" : 0}');
-            $cookies.put('inCard', '{}');
+                if ($scope.user.credit < $scope.shoppingCart.total) {
+                    alert('credit not sufficient')
+                } else {
+                    $scope.shoppingCart.products.forEach(function (p) {
+                        $http({
+                            method: 'GET',
+                            url: 'http://localhost:8090/customers/' + $scope.user.id + '/' + p.id
+                        }).then(function successCallback(response) {
+                            console.log(response.data)
+                        }, function errorCallback(response) {
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                        });
 
-            $scope.shoppingCart = {
-                products: [],
-                total: 0
+                    })
+
+
+                    $scope.user.credit -= $scope.shoppingCart.total;
+                    $scope.user.points += $scope.shoppingCart.total;
+                    $cookies.put('user', JSON.stringify($scope.user));
+
+                    $cookies.put('shoppingCart', '{"products" : [],"total" : 0}');
+                    $cookies.put('inCard', '{}');
+
+                    $scope.shoppingCart = {
+                        products: [],
+                        total: 0
+                    }
+                    $scope.inCard = []
+                    $scope.showModal = false;
+                }
+            } else {
+                alert('loggin first')
             }
-            $scope.inCard = []
-            $scope.showModal = false;
         }
 
         $scope.revenir = () => {
             $scope.showModal = false;
         }
+
 
     })
